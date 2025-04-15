@@ -3,8 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include "ASpell.hpp"
 
-class Fwoosh {
+class Fwoosh: public ASpell {
 
 	public:
 		Fwoosh();
@@ -12,14 +13,8 @@ class Fwoosh {
 		Fwoosh(const Fwoosh& src);
 		Fwoosh& operator=(const Fwoosh& src);
 		~Fwoosh();
-		const std::string&	getName() const;
-		const std::string&	getEffects() const;
-		Fwoosh*				clone() const;
-		void				launch(const ATarget& target);
+		Fwoosh*				clone() const ;
 	
-	protected:
-		std::string name;
-		std::string effects;
 };
 
 #endif

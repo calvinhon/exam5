@@ -1,4 +1,5 @@
 #include "Warlock.hpp"
+#include "ASpell.hpp"
 
 Warlock::Warlock(std::string n, std::string t):
 	name(n),
@@ -7,6 +8,10 @@ Warlock::Warlock(std::string n, std::string t):
 }
 
 Warlock::~Warlock() {
+	std::map<std::string, ASpell*>::iterator it;
+	for (it = spellbook.begin(); it != spellbook.end(); ++it)
+		delete it->second;
+	spellbook.clear();
 	std::cout << name << ": My job here is done!" << std::endl;
 }
 
@@ -25,3 +30,23 @@ void				Warlock::setTitle(const std::string& t) {
 void Warlock::introduce() const {
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
+
+void	Warlock::learnSpell(ASpell* spell){
+	if (spell && spellbook.find(spell->getName()) == spellbook.end())
+		spellbook[spell->getName()] = spell->clone();	
+}
+
+void	Warlock::forgetSpell(std::string name){
+	std::map<std::string, ASpell*>::iterator it = spellbook.find(name);
+	if (it != spellbook.end()) {
+		delete it->second;
+		spellbook.erase(it);
+	}
+}
+
+void	Warlock::launchSpell(std::string name, const ATarget& target){
+	std::map<std::string, ASpell*>::iterator it = spellbook.find(name);
+	if (it != spellbook.end())
+		it->second->launch(target);
+}
+

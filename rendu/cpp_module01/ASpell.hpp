@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+class ATarget;
+
 class ASpell {
 
 	public:
@@ -11,7 +13,7 @@ class ASpell {
 		ASpell(std::string n, std::string e);
 		ASpell(const ASpell& src);
 		ASpell& operator=(const ASpell& src);
-		~ASpell();
+		virtual ~ASpell();
 		const std::string&	getName() const;
 		const std::string&	getEffects() const;
 		virtual ASpell*		clone() const = 0;
