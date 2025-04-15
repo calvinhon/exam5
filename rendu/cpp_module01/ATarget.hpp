@@ -7,16 +7,16 @@
 class ASpell;
 
 class ATarget {
-
 	public:
 		ATarget();
 		ATarget(std::string t);
 		ATarget(const ATarget& src);
 		ATarget& operator=(const ATarget& src);
 		~ATarget();
+
 		const std::string&	getType() const;
-		virtual ATarget*	clone() const = 0;
-		void				getHitBySpell(const ASpell& spell) const;
+		virtual ATarget* 	clone() const = 0;
+		void				getHitBySpell(const ASpell& s) const;
 
 	protected:
 		std::string type;

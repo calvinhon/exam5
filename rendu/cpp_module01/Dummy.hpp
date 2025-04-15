@@ -8,15 +8,14 @@
 class ASpell;
 
 class Dummy: public ATarget {
-
 	public:
 		Dummy();
 		Dummy(std::string t);
 		Dummy(const Dummy& src);
 		Dummy& operator=(const Dummy& src);
 		~Dummy();
-		Dummy*				clone() const ;
 
+		virtual Dummy* 	clone() const;
 };
 
 #endif
